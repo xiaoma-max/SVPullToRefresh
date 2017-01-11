@@ -10,14 +10,13 @@
 #import "SVPullToRefresh.h"
 #import "SVDemoPullToRefresh.h"
 
-@interface SVViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SVViewController ()
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
 @end
 
 @implementation SVViewController
-@synthesize tableView = tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,11 +24,17 @@
     
     __weak SVViewController *weakSelf = self;
     
-    // setup pull-to-refresh
+    // New demo pull to refresh view
     [self.tableView addPullToRefresh:[SVDemoPullToRefresh class] withActionHandler:^{
         [weakSelf insertRowAtTop];
     }];
-        
+    
+    /* Old pull to refresh view
+    [self.tableView addPullToRefresh:[SVArrowPullToRefreshView class] withActionHandler:^{
+        [weakSelf insertRowAtTop];
+    }];
+    */
+    
     // setup infinite scrolling
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf insertRowAtBottom];
@@ -38,7 +43,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [tableView triggerPullToRefresh];
+    [self.tableView triggerPullToRefresh];
 }
 
 #pragma mark - Actions
