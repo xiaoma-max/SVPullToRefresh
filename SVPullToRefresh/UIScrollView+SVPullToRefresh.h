@@ -12,6 +12,7 @@
 
 
 @class SVPullToRefreshView;
+@class SVArrowPullToRefreshView;
 
 @interface UIScrollView (SVPullToRefresh)
 
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSUInteger, SVPullToRefreshPosition) {
 
 - (void)triggerPullToRefresh;
 
-@property (nonatomic, strong, readonly) SVPullToRefreshView *pullToRefreshView;
+@property (nonatomic, strong, readonly) SVArrowPullToRefreshView *pullToRefreshView;
 @property (nonatomic, assign) BOOL showsPullToRefresh;
 
 @end
